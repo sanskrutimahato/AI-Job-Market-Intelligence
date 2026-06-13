@@ -40,3 +40,4 @@ This project provides a modern web application for job seekers to upload resumes
 
 - Add a `.env` file for backend database and JWT configuration.
 - Ignore `node_modules`, build output, and environment files.
+

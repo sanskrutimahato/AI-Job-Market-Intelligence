@@ -19,10 +19,13 @@ The platform combines modern web technologies, artificial intelligence, and job 
 * Mongoose configuration
 * Database schema design
 * ER Diagram documentation
+* User Authentication System
+* JWT-based Authorization
+* Protected API Routes
+* Password Hashing with bcrypt
 
 ### Planned Features
 
-* User Authentication (JWT)
 * Resume Upload and Management
 * Resume Parsing
 * ATS Score Analysis
@@ -51,8 +54,8 @@ The platform combines modern web technologies, artificial intelligence, and job 
 * Express.js
 * MongoDB Atlas
 * Mongoose
-* JWT Authentication (Upcoming)
-* Multer (Upcoming)
+* JWT Authentication 
+* Multer (Planned)
 * dotenv
 * CORS
 
@@ -98,6 +101,24 @@ AI-Job-Market-Intelligence
 ## Database Design
 
 The application uses MongoDB Atlas as the primary database and Mongoose as the ODM.
+
+## Authentication System
+
+The platform implements secure JWT-based authentication.
+
+### Features
+
+* User Registration (Signup)
+* User Login
+* Password Hashing using bcrypt
+* JWT Token Generation
+* JWT Verification Middleware
+* Protected API Routes
+
+### Authentication Flow
+
+User Signup → User Login → JWT Token Issued → Protected Route Access
+
 
 ### Collections
 
@@ -197,7 +218,7 @@ npm run dev
 | Phase 1 – Requirements Analysis          | ✅ Complete    |
 | Phase 2 – Project Setup                  | ✅ Complete    |
 | Phase 3 – Database Design                | ✅ Complete    |
-| Phase 4 – Authentication                 | ⏳ In Progress |
+| Phase 4 – Authentication                 | ✅ Complete    |
 | Phase 5 – Resume Processing & AI Modules | ⏳ Pending     |
 | Phase 6 – Frontend Integration           | ⏳ Pending     |
 | Phase 7 – Testing & Deployment           | ⏳ Pending     |
@@ -217,7 +238,7 @@ npm run dev
 
 * Database Design
 * Backend Development
-* Authentication
+* Authentication System
 * API Development
 * Frontend Integration
 

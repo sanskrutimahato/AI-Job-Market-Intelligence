@@ -23,10 +23,15 @@ The platform combines modern web technologies, artificial intelligence, and job 
 * JWT-based Authorization
 * Protected API Routes
 * Password Hashing with bcrypt
+* Resume Upload Module
+* PDF Resume Upload Support
+* Multer File Handling
+* Secure Resume Upload API
+* Resume Storage in MongoDB
+* User-Resume Association
 
 ### Planned Features
 
-* Resume Upload and Management
 * Resume Parsing
 * ATS Score Analysis
 * Job Match Scoring
@@ -54,14 +59,23 @@ The platform combines modern web technologies, artificial intelligence, and job 
 * Express.js
 * MongoDB Atlas
 * Mongoose
-* JWT Authentication 
-* Multer (Planned)
+* JWT Authentication
+* Multer
 * dotenv
 * CORS
 
 ### Database
 
 * MongoDB Atlas
+
+### Authentication
+
+* JWT (JSON Web Tokens)
+* bcryptjs
+
+### File Upload
+
+* Multer
 
 ---
 
@@ -78,15 +92,28 @@ AI-Job-Market-Intelligence
 ├── backend
 │   ├── src
 │   │   ├── config
+│   │   │   ├── db.js
+│   │   │   └── multer.js
+│   │   │
 │   │   ├── models
 │   │   │   ├── User.js
 │   │   │   ├── Resume.js
 │   │   │   └── ATSReport.js
+│   │   │
 │   │   ├── routes
+│   │   │   ├── authRoutes.js
+│   │   │   └── resumeRoutes.js
+│   │   │
 │   │   ├── controllers
+│   │   │   ├── authController.js
+│   │   │   └── resumeController.js
+│   │   │
 │   │   ├── middleware
+│   │   │   └── authMiddleware.js
+│   │   │
 │   │   └── app.js
 │   │
+│   ├── uploads
 │   ├── .env
 │   └── package.json
 │
@@ -102,24 +129,6 @@ AI-Job-Market-Intelligence
 
 The application uses MongoDB Atlas as the primary database and Mongoose as the ODM.
 
-## Authentication System
-
-The platform implements secure JWT-based authentication.
-
-### Features
-
-* User Registration (Signup)
-* User Login
-* Password Hashing using bcrypt
-* JWT Token Generation
-* JWT Verification Middleware
-* Protected API Routes
-
-### Authentication Flow
-
-User Signup → User Login → JWT Token Issued → Protected Route Access
-
-
 ### Collections
 
 #### Users
@@ -134,9 +143,10 @@ Stores user account information:
 
 #### Resumes
 
-Stores parsed resume information:
+Stores uploaded and processed resume information:
 
 * User Reference
+* Resume File Path
 * Skills
 * Education
 * Experience
@@ -157,6 +167,110 @@ Stores resume analysis results:
 * Readiness Score
 * Created At
 * Updated At
+
+---
+
+## Authentication System
+
+The platform implements secure JWT-based authentication.
+
+### Features
+
+* User Registration (Signup)
+* User Login
+* Password Hashing using bcrypt
+* JWT Token Generation
+* JWT Verification Middleware
+* Protected API Routes
+
+### Authentication Flow
+
+```text
+User Signup
+      ↓
+User Login
+      ↓
+JWT Token Issued
+      ↓
+Protected Route Access
+```
+
+---
+
+## Resume Upload System
+
+The platform supports secure PDF resume uploads.
+
+### Features
+
+* PDF-only uploads
+* JWT-protected upload endpoint
+* Multer-based file handling
+* Automatic file naming
+* Resume metadata storage in MongoDB
+* User-to-resume linking
+
+### Upload Flow
+
+```text
+User Uploads Resume
+          ↓
+Multer Processes File
+          ↓
+File Stored in uploads/
+          ↓
+Resume Record Created in MongoDB
+          ↓
+Resume Linked to User
+```
+
+---
+
+## API Endpoints
+
+### Authentication
+
+#### Register User
+
+```http
+POST /api/auth/signup
+```
+
+#### Login User
+
+```http
+POST /api/auth/login
+```
+
+#### Protected Route
+
+```http
+GET /api/protected
+```
+
+---
+
+### Resume
+
+#### Upload Resume
+
+```http
+POST /api/resume/uploadResume
+```
+
+Headers:
+
+```text
+Authorization: Bearer <JWT_TOKEN>
+```
+
+Body:
+
+```text
+form-data
+
+resume → PDF File
+```
 
 ---
 
@@ -211,17 +325,32 @@ npm run dev
 
 ---
 
+## Security Features
+
+* Password Hashing using bcrypt
+* JWT Authentication
+* Protected API Routes
+* Token Verification Middleware
+* PDF-only Resume Upload Validation
+* Secure User-Resume Association
+
+---
+
 ## Current Progress
 
-| Phase                                    | Status        |
-| ---------------------------------------- | ------------- |
-| Phase 1 – Requirements Analysis          | ✅ Complete    |
-| Phase 2 – Project Setup                  | ✅ Complete    |
-| Phase 3 – Database Design                | ✅ Complete    |
-| Phase 4 – Authentication                 | ✅ Complete    |
-| Phase 5 – Resume Processing & AI Modules | ⏳ Pending     |
-| Phase 6 – Frontend Integration           | ⏳ Pending     |
-| Phase 7 – Testing & Deployment           | ⏳ Pending     |
+| Phase | Status |
+|---------|---------|
+| Phase 1 – Requirements Analysis | ✅ Complete |
+| Phase 2 – Project Setup | ✅ Complete |
+| Phase 3 – Database Design | ✅ Complete |
+| Phase 4 – Authentication System | ✅ Complete |
+| Phase 5 – Resume Upload Module | ✅ Complete |
+| Phase 6 – Resume Parsing | 🚧 In Progress |
+| Phase 7 – Integration | ⏳ Pending |
+| Phase 8 – ATS & Analytics Engine | ⏳ Pending |
+| Phase 9 – AI Features | ⏳ Pending |
+| Phase 10 – Frontend Dashboard | ⏳ Pending |
+| Phase 11 – Testing & Deployment | ⏳ Pending |
 
 ---
 
@@ -229,18 +358,35 @@ npm run dev
 
 ### Person 1
 
-* Resume Processing
+* Resume Parsing
 * ATS Analysis
+* Skill Gap Detection
 * AI Modules
 * Job Market Analytics
 
 ### Person 2
 
 * Database Design
-* Backend Development
 * Authentication System
+* Resume Upload Module
+* Backend Development
 * API Development
 * Frontend Integration
+* Deployment Support
+
+---
+
+## Future Enhancements
+
+* Resume Parsing with AI
+* ATS Score Calculation
+* Job Match Prediction
+* Skill Gap Analysis
+* Personalized Career Roadmaps
+* Learning Recommendations
+* AI Career Mentor
+* Job Market Trend Analytics
+* Interactive Dashboard
 
 ---
 

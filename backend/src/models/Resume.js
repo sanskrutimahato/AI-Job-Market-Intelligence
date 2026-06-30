@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const resumeSchema = new mongoose.Schema(
   {
@@ -7,15 +7,13 @@ const resumeSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-
+    resumePath: {
+        type: String,
+      },
     skills: [String],
-
     education: [String],
-
     experience: [String],
-
     projects: [String],
-
     certifications: [String],
   },
   {
@@ -23,4 +21,4 @@ const resumeSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Resume", resumeSchema);
+export default mongoose.model("Resume", resumeSchema);

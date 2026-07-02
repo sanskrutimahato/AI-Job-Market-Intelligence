@@ -1,395 +1,227 @@
-# AI-Powered Job Market Intelligence Platform
-
-## Overview
+AI-Powered Job Market Intelligence Platform
+Overview
 
 The AI-Powered Job Market Intelligence Platform is a full-stack web application designed to help job seekers analyze their resumes, evaluate ATS compatibility, identify skill gaps, and receive data-driven career insights.
 
-The platform combines modern web technologies, artificial intelligence, and job market analytics to provide personalized recommendations and improve employability.
+The system combines modern web technologies with AI-powered resume parsing and job market intelligence to improve employability and career decision-making.
 
----
-
-## Features
-
-### Current Features (Completed)
-
-* Project setup and architecture
-* React frontend structure
-* Node.js + Express backend
-* MongoDB Atlas database integration
-* Mongoose configuration
-* Database schema design
-* ER Diagram documentation
-* User Authentication System
-* JWT-based Authorization
-* Protected API Routes
-* Password Hashing with bcrypt
-* Resume Upload Module
-* PDF Resume Upload Support
-* Multer File Handling
-* Secure Resume Upload API
-* Resume Storage in MongoDB
-* User-Resume Association
-
-### Planned Features
-
-* Resume Parsing
-* ATS Score Analysis
-* Job Match Scoring
-* Skill Gap Detection
-* Career Readiness Assessment
-* Personalized Learning Roadmaps
-* Job Market Trend Analytics
-* AI Chat Assistant
-
----
-
-## Technology Stack
-
-### Frontend
-
-* React
-* Vite
-* React Router DOM
-* Axios
-* CSS / UI Components
-
-### Backend
-
-* Node.js
-* Express.js
-* MongoDB Atlas
-* Mongoose
-* JWT Authentication
-* Multer
-* dotenv
-* CORS
-
-### Database
-
-* MongoDB Atlas
-
-### Authentication
-
-* JWT (JSON Web Tokens)
-* bcryptjs
-
-### File Upload
-
-* Multer
-
----
-
-## Project Structure
-
-```text
+Features
+Completed Features
+Project setup and architecture
+React frontend structure
+Node.js + Express backend
+MongoDB Atlas integration
+Mongoose schema design
+JWT-based authentication system
+Secure login and signup
+Password hashing using bcrypt
+Protected API routes
+Resume upload module (PDF support)
+Multer file handling system
+Resume storage in MongoDB
+User–resume relationship mapping
+FastAPI integration for resume parsing
+AI-based resume parsing pipeline
+Data normalization layer (backend preprocessing)
+Complete upload → parse → store flow
+In Progress Features
+ATS score analysis engine
+Resume enhancement suggestions
+Skill gap detection system
+Job matching algorithm
+Career insights generation
+Upcoming Features
+AI career assistant chatbot
+Job market trend analysis
+Personalized learning roadmap generator
+Frontend dashboard (analytics view)
+Deployment (Render/Vercel)
+Real-time job recommendations
+Technology Stack
+Frontend
+React
+Vite
+React Router DOM
+Axios
+CSS / UI components
+Backend
+Node.js
+Express.js
+MongoDB Atlas
+Mongoose
+JWT Authentication
+Multer
+Axios
+dotenv
+CORS
+AI / Processing Layer
+FastAPI (Python service)
+Resume parsing pipeline
+NLP-based extraction modules
+Data normalization utilities
+Database
+MongoDB Atlas
+Project Structure
 AI-Job-Market-Intelligence
 │
 ├── frontend
-│   ├── public
 │   ├── src
+│   ├── public
 │   └── package.json
 │
 ├── backend
 │   ├── src
 │   │   ├── config
-│   │   │   ├── db.js
-│   │   │   └── multer.js
-│   │   │
-│   │   ├── models
-│   │   │   ├── User.js
-│   │   │   ├── Resume.js
-│   │   │   └── ATSReport.js
-│   │   │
-│   │   ├── routes
-│   │   │   ├── authRoutes.js
-│   │   │   └── resumeRoutes.js
-│   │   │
 │   │   ├── controllers
-│   │   │   ├── authController.js
-│   │   │   └── resumeController.js
-│   │   │
 │   │   ├── middleware
-│   │   │   └── authMiddleware.js
-│   │   │
+│   │   ├── models
+│   │   ├── routes
+│   │   ├── utils
 │   │   └── app.js
 │   │
 │   ├── uploads
 │   ├── .env
 │   └── package.json
 │
+├── ai-service
+│   ├── app
+│   │   ├── routes
+│   │   ├── services
+│   │   ├── utils
+│   │   └── main.py
+│
 ├── docs
 │   └── ER_Diagram.png
 │
 └── README.md
-```
+Database Design
+Users Collection
+name
+email
+password (hashed)
+createdAt
+updatedAt
+Resumes Collection
+userId (reference to User)
+resumePath
+skills
+education
+experience
+projects
+certifications
+createdAt
+updatedAt
+ATSReports Collection (planned)
+userId
+resumeId
+ATS score
+job match score
+skill gaps
+readiness score
+Authentication System
+Features
+User signup
+User login
+JWT token generation
+Protected routes
+Password encryption using bcrypt
+Flow
 
----
+Signup → Login → JWT Token → Protected APIs
 
-## Database Design
+Resume Upload System (Phase 5–7 Core)
+Features
+PDF upload support
+Multer file handling
+JWT protected endpoint
+FastAPI resume parsing
+AI-based structured extraction
+Data normalization before database storage
+MongoDB storage linked with user
+Flow
 
-The application uses MongoDB Atlas as the primary database and Mongoose as the ODM.
+Upload Resume
+↓
+Multer stores file
+↓
+FastAPI parses resume
+↓
+Normalization layer processes data
+↓
+MongoDB stores structured resume
+↓
+Linked to authenticated user
 
-### Collections
+API Endpoints
+Authentication APIs
 
-#### Users
+Register
+POST http://localhost:5000/api/auth/signup
 
-Stores user account information:
+Login
+POST http://localhost:5000/api/auth/login
 
-* Name
-* Email
-* Password
-* Created At
-* Updated At
+Resume APIs
 
-#### Resumes
-
-Stores uploaded and processed resume information:
-
-* User Reference
-* Resume File Path
-* Skills
-* Education
-* Experience
-* Projects
-* Certifications
-* Created At
-* Updated At
-
-#### ATSReports
-
-Stores resume analysis results:
-
-* User Reference
-* Resume Reference
-* ATS Score
-* Job Match Score
-* Skill Gap Analysis
-* Readiness Score
-* Created At
-* Updated At
-
----
-
-## Authentication System
-
-The platform implements secure JWT-based authentication.
-
-### Features
-
-* User Registration (Signup)
-* User Login
-* Password Hashing using bcrypt
-* JWT Token Generation
-* JWT Verification Middleware
-* Protected API Routes
-
-### Authentication Flow
-
-```text
-User Signup
-      ↓
-User Login
-      ↓
-JWT Token Issued
-      ↓
-Protected Route Access
-```
-
----
-
-## Resume Upload System
-
-The platform supports secure PDF resume uploads.
-
-### Features
-
-* PDF-only uploads
-* JWT-protected upload endpoint
-* Multer-based file handling
-* Automatic file naming
-* Resume metadata storage in MongoDB
-* User-to-resume linking
-
-### Upload Flow
-
-```text
-User Uploads Resume
-          ↓
-Multer Processes File
-          ↓
-File Stored in uploads/
-          ↓
-Resume Record Created in MongoDB
-          ↓
-Resume Linked to User
-```
-
----
-
-## API Endpoints
-
-### Authentication
-
-#### Register User
-
-```http
-POST /api/auth/signup
-```
-
-#### Login User
-
-```http
-POST /api/auth/login
-```
-
-#### Protected Route
-
-```http
-GET /api/protected
-```
-
----
-
-### Resume
-
-#### Upload Resume
-
-```http
-POST /api/resume/uploadResume
-```
+Upload Resume
+POST http://localhost:5000/api/resume/uploadResume
 
 Headers:
-
-```text
 Authorization: Bearer <JWT_TOKEN>
-```
 
 Body:
-
-```text
 form-data
+resume: PDF file
 
-resume → PDF File
-```
+Get Latest Resume
+GET http://localhost:5000/api/resume/myResume
 
----
+Headers:
+Authorization: Bearer <JWT_TOKEN>
 
-## Entity Relationship Diagram
+Current Project Status
+Phase	Status
+Phase 1 – Requirements	Complete
+Phase 2 – Setup	Complete
+Phase 3 – Database Design	Complete
+Phase 4 – Authentication System	Complete
+Phase 5 – Resume Upload	Complete
+Phase 6 – Resume Parsing	Complete
+Phase 7 – Integration (Backend + AI)	Completed
+Phase 8 – ATS Engine	Pending
+Phase 9 – AI Features	Pending
+Phase 10 – Frontend Dashboard	Pending
+Phase 11 – Deployment	Pending
+Contributors
+Person 1
+ATS score engine
+Skill gap detection
+AI recommendation system
+Job market analytics
+Resume intelligence layer
+Person 2 (Fullstack Backend + Integration)
+Authentication system
+Database design
+Resume upload system
+FastAPI integration
+Resume parsing pipeline
+Data normalization
+Backend APIs
+Frontend integration support
+Future Enhancements
+AI resume reviewer
+ATS score prediction model
+Job matching system
+Career roadmap generator
+AI chat assistant
+Real-time job suggestions
+Smart skill recommendations
+License
 
-![ER Diagram](docs/ER_Diagram.png)
+This project is developed for academic and learning purposes.
 
-### Relationships
+Final Note
 
-* One User can have multiple Resumes (1:N)
-* One Resume generates one ATS Report (1:1)
+The system supports a complete pipeline:
 
----
-
-## Installation
-
-### Clone Repository
-
-```bash
-git clone https://github.com/sanskrutimahato/AI-Job-Market-Intelligence.git
-cd AI-Job-Market-Intelligence
-```
-
-### Backend Setup
-
-```bash
-cd backend
-npm install
-```
-
-Create a `.env` file:
-
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-```
-
-Start backend:
-
-```bash
-npm run dev
-```
-
-### Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
----
-
-## Security Features
-
-* Password Hashing using bcrypt
-* JWT Authentication
-* Protected API Routes
-* Token Verification Middleware
-* PDF-only Resume Upload Validation
-* Secure User-Resume Association
-
----
-
-## Current Progress
-
-| Phase | Status |
-|---------|---------|
-| Phase 1 – Requirements Analysis | ✅ Complete |
-| Phase 2 – Project Setup | ✅ Complete |
-| Phase 3 – Database Design | ✅ Complete |
-| Phase 4 – Authentication System | ✅ Complete |
-| Phase 5 – Resume Upload Module | ✅ Complete |
-| Phase 6 – Resume Parsing | 🚧 In Progress |
-| Phase 7 – Integration | ⏳ Pending |
-| Phase 8 – ATS & Analytics Engine | ⏳ Pending |
-| Phase 9 – AI Features | ⏳ Pending |
-| Phase 10 – Frontend Dashboard | ⏳ Pending |
-| Phase 11 – Testing & Deployment | ⏳ Pending |
-
----
-
-## Contributors
-
-### Person 1
-
-* Resume Parsing
-* ATS Analysis
-* Skill Gap Detection
-* AI Modules
-* Job Market Analytics
-
-### Person 2
-
-* Database Design
-* Authentication System
-* Resume Upload Module
-* Backend Development
-* API Development
-* Frontend Integration
-* Deployment Support
-
----
-
-## Future Enhancements
-
-* Resume Parsing with AI
-* ATS Score Calculation
-* Job Match Prediction
-* Skill Gap Analysis
-* Personalized Career Roadmaps
-* Learning Recommendations
-* AI Career Mentor
-* Job Market Trend Analytics
-* Interactive Dashboard
-
----
-
-## License
-
-This project is developed for academic and educational purposes.
+Upload → Parse → Normalize → Store → Retrieve resume data

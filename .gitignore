@@ -23,3 +23,8 @@ Thumbs.db
 
 backend/uploads/*
 !backend/uploads/.gitkeep
+
+__pycache__/
+*.pyc
+.env
+uploads/

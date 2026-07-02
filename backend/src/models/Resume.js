@@ -11,10 +11,14 @@ const resumeSchema = new mongoose.Schema(
         type: String,
       },
     skills: [String],
-    education: [String],
-    experience: [String],
-    projects: [String],
-    certifications: [String],
+
+education: [mongoose.Schema.Types.Mixed],
+
+experience: [mongoose.Schema.Types.Mixed],
+
+projects: [mongoose.Schema.Types.Mixed],
+
+certifications: [mongoose.Schema.Types.Mixed],
   },
   {
     timestamps: true,

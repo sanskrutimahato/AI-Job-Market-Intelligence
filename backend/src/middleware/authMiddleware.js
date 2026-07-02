@@ -5,17 +5,18 @@ const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return res.status(401).json({
-        message: "No token provided",
-      });
+      return res.status(401).json({ message: "No token provided" });
     }
 
     const token = authHeader.split(" ")[1];
 
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET
-    );
+    if (!token) {
+      return res.status(401).json({ message: "Token missing" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    console.log("DECODED TOKEN:", decoded); // 👈 DEBUG
 
     req.user = decoded;
 
@@ -23,6 +24,7 @@ const authMiddleware = (req, res, next) => {
   } catch (error) {
     return res.status(401).json({
       message: "Invalid token",
+      error: error.message,
     });
   }
 };

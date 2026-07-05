@@ -51,6 +51,17 @@ The platform combines modern web technologies, artificial intelligence, and job 
 - Certification extraction
 - Structured JSON output generation
 
+#### ATS Analysis Engine
+
+- Market skill profile generation
+- Role-based skill analysis
+- Tiered skill classification (Core / Important / Nice-to-Have)
+- ATS compatibility scoring
+- Market readiness scoring
+- Missing skill identification
+- Resume skill matching
+- FastAPI ATS Score API
+
 #### Backend Integration
 
 - Upload → Parse → Normalize → Store workflow
@@ -64,13 +75,10 @@ The platform combines modern web technologies, artificial intelligence, and job 
 
 ## Features In Progress
 
-- ATS Score Analysis Engine
-- ATS Compatibility Evaluation
-- Resume Improvement Suggestions
-- Job Match Scoring
+- Job Match Engine
 - Skill Gap Detection
+- Resume Improvement Suggestions
 - Career Readiness Assessment
-
 ---
 
 ## Planned Features
@@ -109,9 +117,9 @@ The platform combines modern web technologies, artificial intelligence, and job 
 
 ### AI Service
 
-- FastAPI
-- Python
 - Resume Parsing Pipeline
+- ATS Score Engine
+- Market Skill Profiling
 - NLP-Based Extraction Modules
 
 ### Database
@@ -306,8 +314,13 @@ The AI Service currently extracts:
 
 ---
 
-## API Endpoints
+### ATS APIs
 
+#### Generate ATS Score
+
+```http
+POST http://127.0.0.1:8000/api/atsScore
+```
 ### Authentication APIs
 
 #### Register User
@@ -490,7 +503,7 @@ http://127.0.0.1:8000
 | Phase 5 | Resume Upload Module | ✅ Complete |
 | Phase 6 | Resume Parsing Engine | ✅ Complete |
 | Phase 7 | Backend + AI Service Integration | ✅ Complete |
-| Phase 8 | ATS Analysis Engine | ⏳ Pending |
+| Phase 8 | ATS Analysis Engine | ✅ Complete |
 | Phase 9 | AI Recommendation Features | ⏳ Pending |
 | Phase 10 | Frontend Dashboard Integration | ⏳ Pending |
 | Phase 11 | Testing & Deployment | ⏳ Pending |

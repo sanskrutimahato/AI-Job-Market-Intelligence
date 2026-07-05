@@ -1,5 +1,7 @@
 from fastapi import FastAPI
+
 from app.routes.resume_routes import router as resume_router
+from app.routes.ats import router as ats_router
 
 app = FastAPI(
     title="AI Resume Parser API",
@@ -12,6 +14,11 @@ app.include_router(
     tags=["Resume Parser"]
 )
 
+app.include_router(
+    ats_router,
+    prefix="/api",
+    tags=["ATS Score"]
+)
 
 @app.get("/")
 def root():

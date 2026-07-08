@@ -46,7 +46,7 @@ async def parse_resume_api(file: UploadFile = File(...)):
             detail=str(e)
         )
 
-    finally:
-        # Delete uploaded file after parsing
-        if os.path.exists(file_path):
-            os.remove(file_path)
+    # finally:
+    #     # Delete uploaded file after parsing
+    #     if os.path.exists(file_path):
+    #         os.remove(file_path)

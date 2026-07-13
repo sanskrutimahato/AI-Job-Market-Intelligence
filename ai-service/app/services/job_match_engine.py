@@ -36,7 +36,8 @@ def calculate_job_match(resume_text: str, job_description: str):
     # ---------------------------------------------------
     resume_skills = extract_skills(resume_text)
     job_skills = extract_skills(job_description)
-
+    print("Resume Skills:", resume_skills)
+    print("Job Skills:", job_skills)
     resume_set = {skill.lower() for skill in resume_skills}
 
     # ---------------------------------------------------

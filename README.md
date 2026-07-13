@@ -62,6 +62,15 @@ The platform combines modern web technologies, artificial intelligence, and job 
 - Resume skill matching
 - FastAPI ATS Score API
 
+### Job Match Engine
+
+- Job Description Analysis
+- Resume vs Job Description Matching
+- Skill Match Detection
+- Missing Skill Identification
+- Job Match Percentage Calculation
+- FastAPI Job Match API
+
 #### Backend Integration
 
 - Upload → Parse → Normalize → Store workflow
@@ -71,11 +80,21 @@ The platform combines modern web technologies, artificial intelligence, and job 
 - Authentication-integrated resume management
 - FastAPI and Node.js integration
 
+#### Frontend Dashboard Integration
+
+- Dashboard redesign
+- Sidebar navigation layout
+- Resume Analysis page
+- Job Match Score visualization
+- ATS Score visualization
+- Quick Action cards
+- Roadmap page integration
+- AI Mentor page integration
+- Responsive dark theme dashboard
 ---
 
 ## Features In Progress
 
-- Job Match Engine
 - Skill Gap Detection
 - Resume Improvement Suggestions
 - Career Readiness Assessment
@@ -196,7 +215,7 @@ Stores uploaded and processed resume information:
 - Created At
 - Updated At
 
-### ATS Reports Collection (Upcoming)
+### ATS Reports Collection
 
 Will store:
 
@@ -321,6 +340,20 @@ The AI Service currently extracts:
 ```http
 POST http://127.0.0.1:8000/api/atsScore
 ```
+### Job Match APIs
+
+#### Generate Job Match Score
+
+```http
+POST http://127.0.0.1:8000/api/jobMatch
+```
+
+Returns:
+
+- Job Match Score
+- Matched Skills
+- Missing Skills
+
 ### Authentication APIs
 
 #### Register User
@@ -504,9 +537,11 @@ http://127.0.0.1:8000
 | Phase 6 | Resume Parsing Engine | ✅ Complete |
 | Phase 7 | Backend + AI Service Integration | ✅ Complete |
 | Phase 8 | ATS Analysis Engine | ✅ Complete |
-| Phase 9 | AI Recommendation Features | ⏳ Pending |
-| Phase 10 | Frontend Dashboard Integration | ⏳ Pending |
-| Phase 11 | Testing & Deployment | ⏳ Pending |
+| Phase 9 | Job Match Engine | ✅ Complete |
+| Phase 10 | Frontend Dashboard Integration | ✅ Complete |
+| Phase 11 | Skill Gap Detection | 🚧 In Progress |
+| Phase 12 | AI Recommendations | ⏳ Pending |
+| Phase 13 | Testing & Deployment | ⏳ Pending |
 
 ---
 
@@ -548,15 +583,17 @@ User Login
       ↓
 Upload Resume
       ↓
-FastAPI Parsing
+Resume Parsing
       ↓
-Structured Data Extraction
+ATS Analysis
       ↓
-Normalization Layer
+Job Match Analysis
+      ↓
+Skill Extraction
       ↓
 MongoDB Storage
       ↓
-Resume Retrieval API
+Dashboard Visualization
 ```
 
 Users can securely upload resumes, extract structured information using the AI service, store results in MongoDB, and retrieve their latest processed resume through authenticated APIs.
@@ -568,7 +605,6 @@ Users can securely upload resumes, extract structured information using the AI s
 - ATS Score Prediction
 - Resume Improvement Suggestions
 - Skill Gap Detection
-- Job Match Analysis
 - AI Career Assistant
 - Personalized Learning Roadmaps
 - Job Market Intelligence Dashboard

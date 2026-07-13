@@ -1,6 +1,9 @@
 import AppLayout from "../layouts/AppLayout";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <AppLayout>
       <div className="p-4 md:p-6">
@@ -58,15 +61,15 @@ const Dashboard = () => {
           <div className="bg-[#111827] p-6 rounded-xl border border-gray-800">
             <p className="text-gray-400">ATS Score</p>
             <h2 className="text-4xl font-bold text-blue-400 mt-2">
-              85
-            </h2>
+  {localStorage.getItem("atsScore") || 0}
+</h2>
           </div>
 
           <div className="bg-[#111827] p-6 rounded-xl border border-gray-800">
             <p className="text-gray-400">Job Match</p>
             <h2 className="text-4xl font-bold text-green-400 mt-2">
-              78%
-            </h2>
+  {localStorage.getItem("jobMatchScore") || 0}%
+</h2>
           </div>
 
           <div className="bg-[#111827] p-6 rounded-xl border border-gray-800">
@@ -88,7 +91,10 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 
-          <div className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-blue-500 transition cursor-pointer">
+          <div
+            onClick={() => navigate("/resume")}
+            className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-blue-500 transition cursor-pointer"
+          >
             <h3 className="font-semibold text-lg mb-2">
               Resume Analysis
             </h3>
@@ -98,7 +104,10 @@ const Dashboard = () => {
             </p>
           </div>
 
-          <div className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-green-500 transition cursor-pointer">
+          <div
+            onClick={() => navigate("/roadmap")}
+            className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-green-500 transition cursor-pointer"
+          >
             <h3 className="font-semibold text-lg mb-2">
               Generate Roadmap
             </h3>
@@ -108,7 +117,10 @@ const Dashboard = () => {
             </p>
           </div>
 
-          <div className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-purple-500 transition cursor-pointer">
+          <div
+            onClick={() => navigate("/chat")}
+            className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-purple-500 transition cursor-pointer"
+          >
             <h3 className="font-semibold text-lg mb-2">
               AI Mentor
             </h3>
